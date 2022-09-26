@@ -1,5 +1,8 @@
 import { Box, Dialog, styled } from '@mui/material'
 import React from 'react'
+import { useContext } from 'react'
+import { AccountContext } from '../../context/AccountProvider'
+import ChatBox from './chat/ChatBox'
 import EmptyChat from './chat/EmptyChat'
 import Menu from './menu/Menu'
 
@@ -18,7 +21,6 @@ const RightComponent = styled(Box)`
     border-left: 1px solid rgba(0, 0, 0, 0.4);
 `
 
-
 const dialogStyle = {
     height: '96%',
     width: '100%',
@@ -31,9 +33,11 @@ const dialogStyle = {
 }
 
 const ChatDialog = () => {
-  return (<div>
-  
-  <Dialog
+
+  const { person } = useContext(AccountContext);
+
+  return (
+    <Dialog
         open={true}
         PaperProps={{ sx: dialogStyle}}
         hideBackdrop={true}
@@ -44,10 +48,10 @@ const ChatDialog = () => {
                 <Menu/>
             </LeftComponent>
             <RightComponent>
-                <EmptyChat/>
+                { Object.keys(person).length ? <ChatBox/> : <EmptyChat/>}
             </RightComponent>
         </Component>
-    </Dialog></div>
+    </Dialog>
   )
 }
 

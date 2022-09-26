@@ -31,7 +31,7 @@ const Messenger = () => {
       {
         account ?
         <>
-        <Header>
+          <Header>
               <Toolbar>
                   
               </Toolbar>
